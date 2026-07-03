@@ -1,14 +1,14 @@
 const colors = {
-  reset: '\x1b[0m',
-  bright: '\x1b[1m',
-  yellow: '\x1b[33m',
-  blue: '\x1b[34m',
+  reset: "\x1b[0m",
+  bright: "\x1b[1m",
+  yellow: "\x1b[33m",
+  blue: "\x1b[34m",
 };
 
 export const ExecutionTime = (
   target: any,
   propertyKey: string,
-  descriptor: PropertyDescriptor
+  descriptor: PropertyDescriptor,
 ): PropertyDescriptor => {
   const originalMethod = descriptor.value;
 
@@ -21,7 +21,7 @@ export const ExecutionTime = (
 
         console.log(
           `\n${colors.bright}${colors.blue}⏱  EXECUTION TIME${colors.reset}\n` +
-          `   ${colors.yellow}${target.constructor.name}.${propertyKey}${colors.reset} → ${colors.bright}${duration}ms${colors.reset}\n`
+            `   ${colors.yellow}${target.constructor.name}.${propertyKey}${colors.reset} → ${colors.bright}${duration}ms${colors.reset}\n`,
         );
 
         return result;
@@ -30,11 +30,11 @@ export const ExecutionTime = (
         const duration = Date.now() - start;
         console.log(
           `\n${colors.bright}${colors.blue}⏱  EXECUTION TIME (FAILED)${colors.reset}\n` +
-          `   ${colors.yellow}${target.constructor.name}.${propertyKey}${colors.reset} → ${colors.bright}${duration}ms${colors.reset}\n`
+            `   ${colors.yellow}${target.constructor.name}.${propertyKey}${colors.reset} → ${colors.bright}${duration}ms${colors.reset}\n`,
         );
         throw error;
       });
   };
 
   return descriptor;
-}
+};

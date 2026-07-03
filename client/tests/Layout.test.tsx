@@ -9,10 +9,10 @@ describe('Layout', () => {
       <MemoryRouter initialEntries={['/']}>
         <Routes>
           <Route element={<Layout />}>
-            <Route path="/" element={<p>Child content</p>} />
+            <Route path='/' element={<p>Child content</p>} />
           </Route>
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     )
     expect(screen.getByText('Child content')).toBeInTheDocument()
   })
@@ -22,10 +22,10 @@ describe('Layout', () => {
       <MemoryRouter initialEntries={['/']}>
         <Routes>
           <Route element={<Layout />}>
-            <Route path="/" element={<p>Test</p>} />
+            <Route path='/' element={<p>Test</p>} />
           </Route>
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     )
     const wrapper = container.querySelector('.max-w-360')
     expect(wrapper).toBeInTheDocument()

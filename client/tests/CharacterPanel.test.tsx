@@ -1,9 +1,15 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
-import { CharacterPanel } from '@modules/character/components/CharacterPanel'
+import { CharacterPanel } from '@features/character/components/CharacterPanel'
 import { useCharacters } from '@hooks/character/useCharacters'
-import { CHARACTER_FILTER_VALUES, GENDER_FILTER_VALUES, SPECIES_FILTER_VALUES, STATUS_FILTER_VALUES, SORT_ORDER } from '@lib/character.constants'
+import {
+  CHARACTER_FILTER_VALUES,
+  GENDER_FILTER_VALUES,
+  SPECIES_FILTER_VALUES,
+  STATUS_FILTER_VALUES,
+  SORT_ORDER,
+} from '@lib/character.constants'
 
 vi.mock('@hooks/character/useCharacters')
 
@@ -50,7 +56,7 @@ function renderPanel() {
   return render(
     <MockedProvider>
       <CharacterPanel selectedCharacterId={null} onSelectCharacter={vi.fn()} />
-    </MockedProvider>
+    </MockedProvider>,
   )
 }
 

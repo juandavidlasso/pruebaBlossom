@@ -12,11 +12,11 @@ interface Props {
 export function FilterInput({ searchText, filters, onSearchChange, onApplyFilters }: Props) {
   const [showPopup, setShowPopup] = useState(false)
   const [localFilters, setLocalFilters] = useState<FilterValues>(filters)
-  
+
   const handleChipChange = useCallback((field: keyof FilterValues, value: string) => {
     setLocalFilters((prev) => ({ ...prev, [field]: value }))
-  }, []) 
-  
+  }, [])
+
   const handleApply = useCallback(() => {
     onApplyFilters(localFilters)
     setShowPopup(false)
@@ -28,7 +28,6 @@ export function FilterInput({ searchText, filters, onSearchChange, onApplyFilter
     }
     setShowPopup((prev) => !prev)
   }, [showPopup, filters])
-  
 
   const hasChanges =
     localFilters.characterType !== filters.characterType ||
@@ -36,28 +35,28 @@ export function FilterInput({ searchText, filters, onSearchChange, onApplyFilter
     localFilters.status !== filters.status ||
     localFilters.gender !== filters.gender
 
-    const memoizedFilters = useMemo(() => {
-  return filterOptions.map((filter) => (
-    <div key={filter.id} className='flex flex-col gap-2'>
-      <p className='text-sm text-[#6B7280] font-medium'>{filter.name}</p>
-      <div className='grid grid-cols-3 gap-2'>
-        {filter.options.map((opt) => (
-          <button
-            key={opt}
-            onClick={() => handleChipChange(filter.value, opt)}
-            className={`px-2.5 py-4.25 rounded-lg text-sm font-semibold hover:cursor-pointer hover:bg-[#EEE3FF] flex-1 ${
-              localFilters[filter.value] === opt
-                ? 'bg-[#EEE3FF] text-[#8054C7]'
-                : 'border-[#E5E7EB] text-[#111827] border'
-            }`}
-          >
-            {opt}
-          </button>
-        ))}
+  const memoizedFilters = useMemo(() => {
+    return filterOptions.map((filter) => (
+      <div key={filter.id} className='flex flex-col gap-2'>
+        <p className='text-sm text-[#6B7280] font-medium'>{filter.name}</p>
+        <div className='grid grid-cols-3 gap-2'>
+          {filter.options.map((opt) => (
+            <button
+              key={opt}
+              onClick={() => handleChipChange(filter.value, opt)}
+              className={`px-2.5 py-4.25 rounded-lg text-sm font-semibold hover:cursor-pointer hover:bg-[#EEE3FF] flex-1 ${
+                localFilters[filter.value] === opt
+                  ? 'bg-[#EEE3FF] text-[#8054C7]'
+                  : 'border-[#E5E7EB] text-[#111827] border'
+              }`}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
       </div>
-    </div>
-  ));
-}, [localFilters, handleChipChange]);
+    ))
+  }, [localFilters, handleChipChange])
 
   const filterContent = (
     <div className='h-full relative flex flex-col gap-3'>
@@ -70,7 +69,7 @@ export function FilterInput({ searchText, filters, onSearchChange, onApplyFilter
           hasChanges ? 'bg-[#8054C7] text-white' : 'bg-[#F3F4F6] text-[#6B7280]'
         }`}
         style={{
-          boxShadow: hasChanges ? '0px 1px 2px 0px #0000000D' : ''
+          boxShadow: hasChanges ? '0px 1px 2px 0px #0000000D' : '',
         }}
       >
         Filter
@@ -123,10 +122,12 @@ export function FilterInput({ searchText, filters, onSearchChange, onApplyFilter
 
       {showPopup && (
         <>
-          <div className='hidden md:block absolute top-full left-0 right-0 mt-1 bg-white rounded-lg z-40 p-4 max-h-90 overflow-y-auto'
-          style={{
-            boxShadow: '0px 4px 6px -2px #0000000D, 0px 10px 15px -3px #0000001A, 0px 0px 0px 1px #0000000D'
-          }}
+          <div
+            className='hidden md:block absolute top-full left-0 right-0 mt-1 bg-white rounded-lg z-40 p-4 max-h-90 overflow-y-auto'
+            style={{
+              boxShadow:
+                '0px 4px 6px -2px #0000000D, 0px 10px 15px -3px #0000001A, 0px 0px 0px 1px #0000000D',
+            }}
           >
             {filterContent}
           </div>

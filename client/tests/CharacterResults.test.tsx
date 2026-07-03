@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
-import { CharacterResults } from '@modules/character/components/CharacterResults'
+import { CharacterResults } from '@features/character/components/CharacterResults'
 
 const mockCharacters = [
   {
@@ -40,13 +40,13 @@ describe('CharacterResults', () => {
       <MockedProvider>
         <CharacterResults
           characters={mockCharacters}
-          characterTypeFilter="All"
+          characterTypeFilter='All'
           activeFilterCount={0}
           selectedCharacterId={null}
           onSelectCharacter={vi.fn()}
           onHideCharacter={vi.fn()}
         />
-      </MockedProvider>
+      </MockedProvider>,
     )
     expect(screen.getByText('Starred Characters (1)')).toBeInTheDocument()
     expect(screen.getByText('Characters (1)')).toBeInTheDocument()
@@ -57,13 +57,13 @@ describe('CharacterResults', () => {
       <MockedProvider>
         <CharacterResults
           characters={mockCharacters}
-          characterTypeFilter="All"
+          characterTypeFilter='All'
           activeFilterCount={2}
           selectedCharacterId={null}
           onSelectCharacter={vi.fn()}
           onHideCharacter={vi.fn()}
         />
-      </MockedProvider>
+      </MockedProvider>,
     )
     expect(screen.getByText('2 Results')).toBeInTheDocument()
     expect(screen.getByText('2 Filters')).toBeInTheDocument()
@@ -74,13 +74,13 @@ describe('CharacterResults', () => {
       <MockedProvider>
         <CharacterResults
           characters={mockCharacters}
-          characterTypeFilter="Starred"
+          characterTypeFilter='Starred'
           activeFilterCount={1}
           selectedCharacterId={null}
           onSelectCharacter={vi.fn()}
           onHideCharacter={vi.fn()}
         />
-      </MockedProvider>
+      </MockedProvider>,
     )
     expect(screen.getByText('Rick Sanchez')).toBeInTheDocument()
     expect(screen.queryByText('Morty Smith')).not.toBeInTheDocument()

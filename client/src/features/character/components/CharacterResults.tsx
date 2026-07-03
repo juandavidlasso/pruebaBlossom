@@ -33,7 +33,9 @@ export function CharacterResults({
         <div className='flex items-center justify-between mb-2 px-2 py-3'>
           <span className='text-[16px] font-semibold text-[#2563EB]'>{totalResults} Results</span>
           <span className='text-sm bg-[#63D83833] text-[#3B8520] px-3 py-0.5 rounded-xl font-semibold'>
-            <span className='inline-block -translate-y-px'>{activeFilterCount} Filter{activeFilterCount > 1 ? 's' : ''}</span>
+            <span className='inline-block -translate-y-px'>
+              {activeFilterCount} Filter{activeFilterCount > 1 ? 's' : ''}
+            </span>
           </span>
         </div>
       ) : null}
@@ -43,8 +45,8 @@ export function CharacterResults({
           <p className='text-xs text-[#6B7280] uppercase mb-2 font-semibold'>
             Starred Characters ({starred.length})
           </p>
-          </div>
-        )}
+        </div>
+      )}
 
       {showStarred &&
         starred.map((character) => (
@@ -59,10 +61,10 @@ export function CharacterResults({
 
       {showNonStarred && (
         <div className='flex flex-col gap-2'>
-            <div className='w-full py-3 px-4'>
-          <p className='text-xs text-[#6B7280] uppercase mb-2 mt-4 font-semibold'>
-            Characters ({nonStarred.length})
-          </p>
+          <div className='w-full py-3 px-4'>
+            <p className='text-xs text-[#6B7280] uppercase mb-2 mt-4 font-semibold'>
+              Characters ({nonStarred.length})
+            </p>
           </div>
           {nonStarred.map((character) => (
             <CharacterItem

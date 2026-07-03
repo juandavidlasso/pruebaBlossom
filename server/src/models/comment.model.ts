@@ -1,7 +1,16 @@
-import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize';
-import { sequelize } from '../config/database';
+import {
+  CreationOptional,
+  DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  Model,
+} from "sequelize";
+import { sequelize } from "../config/database";
 
-export class Comment extends Model<InferAttributes<Comment, { omit: 'createdAt' | 'updatedAt' }>, InferCreationAttributes<Comment, { omit: 'createdAt' | 'updatedAt' }>> {
+export class Comment extends Model<
+  InferAttributes<Comment, { omit: "createdAt" | "updatedAt" }>,
+  InferCreationAttributes<Comment, { omit: "createdAt" | "updatedAt" }>
+> {
   declare id: CreationOptional<number>;
   declare characterId: number;
   declare content: string;
@@ -21,8 +30,8 @@ Comment.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'characters',
-        key: 'id',
+        model: "characters",
+        key: "id",
       },
     },
     content: {
@@ -32,7 +41,7 @@ Comment.init(
   },
   {
     sequelize,
-    tableName: 'comments',
+    tableName: "comments",
     timestamps: true,
-  }
+  },
 );

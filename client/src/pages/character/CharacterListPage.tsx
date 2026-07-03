@@ -1,4 +1,4 @@
-import { CharacterListView } from '@modules/character'
+import { CharacterListView } from '@features/character'
 
 export default function CharacterListPage() {
   return <CharacterListView />

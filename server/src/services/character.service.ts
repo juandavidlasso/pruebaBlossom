@@ -1,8 +1,12 @@
-import { InferAttributes, Op, WhereOptions } from 'sequelize';
-import { Character } from '../models/character.model';
-import { CharacterFilters, getFromCache, setInCache } from '../cache/character.cache';
-import { ExecutionTime } from '../decorators/executionTime.decorator';
-import { Comment, Favorite } from '../models';
+import { InferAttributes, Op, WhereOptions } from "sequelize";
+import { Character } from "../models/character.model";
+import {
+  CharacterFilters,
+  getFromCache,
+  setInCache,
+} from "../cache/character.cache";
+import { ExecutionTime } from "../decorators/executionTime.decorator";
+import { Comment, Favorite } from "../models";
 
 export class CharacterService {
   @ExecutionTime
@@ -30,11 +34,11 @@ export class CharacterService {
       where.origin = { [Op.iLike]: `%${filters.origin}%` };
     }
 
-    const result = await Character.findAll({ 
+    const result = await Character.findAll({
       where,
       include: [
-        { model: Comment, as: 'comments', required: false },
-        { model: Favorite, as: 'favorite', required: false }
+        { model: Comment, as: "comments", required: false },
+        { model: Favorite, as: "favorite", required: false },
       ],
     });
 

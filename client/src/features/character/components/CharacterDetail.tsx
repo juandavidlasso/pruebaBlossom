@@ -1,6 +1,6 @@
 import { Character } from '@appTypes/character/character.types'
-import { CommentForm } from '@modules/comment/components/CommentForm'
-import { CommentList } from '@modules/comment'
+import { CommentForm } from '../../comment/components/CommentForm'
+import { CommentList } from '../../comment'
 
 interface Props {
   character: Character | null
@@ -51,7 +51,11 @@ export function CharacterDetail({ character, onBack }: Props) {
           alt={character.name}
           className='w-20 h-20 rounded-full object-cover'
         />
-        {character.favorite && <span className='text-[#63D838] text-3xl -ml-6 mb-1 bg-white w-8 h-8 rounded-2xl flex justify-center items-center'>♥</span>}
+        {character.favorite && (
+          <span className='text-[#63D838] text-3xl -ml-6 mb-1 bg-white w-8 h-8 rounded-2xl flex justify-center items-center'>
+            ♥
+          </span>
+        )}
       </div>
 
       <h1 className='text-2xl font-bold text-[#111827] mb-6'>{character.name}</h1>

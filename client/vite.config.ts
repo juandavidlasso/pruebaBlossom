@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { resolve } from 'path'
@@ -13,7 +13,7 @@ export default defineConfig({
       "@graphql": resolve(__dirname, 'src/graphql'),
       "@hooks": resolve(__dirname, 'src/hooks'),
       "@lib": resolve(__dirname, 'src/lib'),
-      "@modules": resolve(__dirname, 'src/modules'),
+      "@features": resolve(__dirname, 'src/features'),
       "@pages": resolve(__dirname, 'src/pages'),
       "@router": resolve(__dirname, 'src/router'),
       "@appTypes": resolve(__dirname, 'src/types'),

@@ -1,5 +1,5 @@
-import Redis from 'ioredis';
-import { env } from './environment';
+import Redis from "ioredis";
+import { env } from "./environment";
 
 export const redis = new Redis({
   host: env.redis.host,
@@ -8,10 +8,10 @@ export const redis = new Redis({
   lazyConnect: true,
 });
 
-redis.on('error', (err) => {
-  console.error('💥 [Redis] Connection error:', err.message);
+redis.on("error", (err) => {
+  console.error("💥 [Redis] Connection error:", err.message);
 });
 
-redis.on('connect', () => {
-  console.log('🧠 [Redis] Connected successfully');
+redis.on("connect", () => {
+  console.log("🧠 [Redis] Connected successfully");
 });

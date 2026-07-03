@@ -1,7 +1,16 @@
-import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize';
-import { sequelize } from '../config/database';
+import {
+  CreationOptional,
+  DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  Model,
+} from "sequelize";
+import { sequelize } from "../config/database";
 
-export class Favorite extends Model<InferAttributes<Favorite, { omit: 'createdAt' | 'updatedAt' }>, InferCreationAttributes<Favorite, { omit: 'createdAt' | 'updatedAt' }>> {
+export class Favorite extends Model<
+  InferAttributes<Favorite, { omit: "createdAt" | "updatedAt" }>,
+  InferCreationAttributes<Favorite, { omit: "createdAt" | "updatedAt" }>
+> {
   declare id: CreationOptional<number>;
   declare characterId: number;
 
@@ -21,14 +30,14 @@ Favorite.init(
       allowNull: false,
       unique: true,
       references: {
-        model: 'characters',
-        key: 'id',
+        model: "characters",
+        key: "id",
       },
     },
   },
   {
     sequelize,
-    tableName: 'favorites',
+    tableName: "favorites",
     timestamps: true,
-  }
+  },
 );

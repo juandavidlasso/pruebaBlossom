@@ -10,7 +10,14 @@ export function AppRouter() {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path='/' element={<Suspense fallback={<Loading visible />}><LazyCharacterListPage /></Suspense>} />
+          <Route
+            path='/'
+            element={
+              <Suspense fallback={<Loading visible />}>
+                <LazyCharacterListPage />
+              </Suspense>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

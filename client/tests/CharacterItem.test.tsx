@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
-import { CharacterItem } from '@modules/character/components/CharacterItem'
+import { CharacterItem } from '@features/character/components/CharacterItem'
 
 const mockCharacter = {
   id: 1,
@@ -28,7 +28,7 @@ describe('CharacterItem', () => {
           onSelect={vi.fn()}
           onHide={vi.fn()}
         />
-      </MockedProvider>
+      </MockedProvider>,
     )
     expect(screen.getByText('Rick Sanchez')).toBeInTheDocument()
     expect(screen.getByText('Human')).toBeInTheDocument()
@@ -44,14 +44,17 @@ describe('CharacterItem', () => {
           onSelect={onSelect}
           onHide={vi.fn()}
         />
-      </MockedProvider>
+      </MockedProvider>,
     )
     fireEvent.click(screen.getByText('Rick Sanchez'))
     expect(onSelect).toHaveBeenCalledWith(mockCharacter)
   })
 
   it('shows filled heart when character is favorite', () => {
-    const favoriteCharacter = { ...mockCharacter, favorite: { id: 1, characterId: 1, createdAt: '' } }
+    const favoriteCharacter = {
+      ...mockCharacter,
+      favorite: { id: 1, characterId: 1, createdAt: '' },
+    }
     render(
       <MockedProvider>
         <CharacterItem
@@ -60,7 +63,7 @@ describe('CharacterItem', () => {
           onSelect={vi.fn()}
           onHide={vi.fn()}
         />
-      </MockedProvider>
+      </MockedProvider>,
     )
     expect(screen.getByText('♥')).toBeInTheDocument()
   })
@@ -74,7 +77,7 @@ describe('CharacterItem', () => {
           onSelect={vi.fn()}
           onHide={vi.fn()}
         />
-      </MockedProvider>
+      </MockedProvider>,
     )
     expect(screen.getByText('♡')).toBeInTheDocument()
   })

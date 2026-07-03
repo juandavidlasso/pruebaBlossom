@@ -28,8 +28,8 @@ export function CharacterPanel({ selectedCharacterId, onSelectCharacter }: Props
   const ViewState = {
     LOADING: loading,
     EMPTY: !loading && characters.length === 0,
-    RESULTS: !loading && characters.length > 0
-  };
+    RESULTS: !loading && characters.length > 0,
+  }
 
   if (error) return null
 
@@ -37,7 +37,10 @@ export function CharacterPanel({ selectedCharacterId, onSelectCharacter }: Props
     <div className='md:w-93.75 md:min-w-93.75 py-4 px-3 w-full'>
       <div className='flex items-center justify-between mb-5'>
         <h1 className='text-xl font-bold'>Rick and Morty list</h1>
-        <button onClick={toggleSort} className='text-sm text-gray-500 bg-[#EEE3FF] w-fit px-3 py-1 rounded-lg cursor-pointer hover:bg-purple-900 hover:text-white'>
+        <button
+          onClick={toggleSort}
+          className='text-sm text-gray-500 bg-[#EEE3FF] w-fit px-3 py-1 rounded-lg cursor-pointer hover:bg-purple-900 hover:text-white'
+        >
           {sortOrder === 'asc' ? 'A-Z ↓' : 'Z-A ↑'}
         </button>
       </div>
@@ -73,14 +76,16 @@ export function CharacterPanel({ selectedCharacterId, onSelectCharacter }: Props
 
       {ViewState.LOADING && <CharacterSkeletonList />}
       {ViewState.EMPTY && <p className='text-sm text-gray-500'>No se encontraron personajes.</p>}
-      {ViewState.RESULTS && <CharacterResults
-        characters={characters}
-        characterTypeFilter={filters.characterType}
-        activeFilterCount={activeFilterCount}
-        selectedCharacterId={selectedCharacterId}
-        onSelectCharacter={onSelectCharacter}
-        onHideCharacter={hideCharacter}
-      />}
+      {ViewState.RESULTS && (
+        <CharacterResults
+          characters={characters}
+          characterTypeFilter={filters.characterType}
+          activeFilterCount={activeFilterCount}
+          selectedCharacterId={selectedCharacterId}
+          onSelectCharacter={onSelectCharacter}
+          onHideCharacter={hideCharacter}
+        />
+      )}
     </div>
   )
 }

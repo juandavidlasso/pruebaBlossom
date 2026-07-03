@@ -35,9 +35,7 @@ export function CharacterItem({ character, isSelected, onSelect, onHide }: Props
         }}
         className='bg-white size-5 absolute top-1 right-0 rounded-full text-red-700 font-extrabold hidden text-sm group-hover:block hover:cursor-pointer hover:bg-red-900 hover:text-white'
       >
-        <span className={isFavorite ? 'inline-block -translate-y-px' : ''}>
-        ✕
-        </span>
+        <span className={isFavorite ? 'inline-block -translate-y-px' : ''}>✕</span>
       </button>
       <button
         onClick={(e) => {
@@ -46,7 +44,9 @@ export function CharacterItem({ character, isSelected, onSelect, onHide }: Props
         }}
         className='size-8 rounded-full bg-white hover:bg-[#53C629] hover:cursor-pointer hover:text-white text-[#53C629] mr-2'
       >
-        <span className={`${isFavorite ? 'text-2xl' : 'text-[#D1D5DB] text-3xl hover:cursor-pointer inline-block -translate-y-0.5'}`}>
+        <span
+          className={`${isFavorite ? 'text-2xl' : 'text-[#D1D5DB] text-3xl hover:cursor-pointer inline-block -translate-y-0.5'}`}
+        >
           {isFavorite ? '♥' : '♡'}
         </span>
       </button>

@@ -2,8 +2,19 @@ import { useState, useMemo, useEffect, useRef } from 'react'
 import { useQuery } from '@apollo/client'
 import { toast } from 'react-toastify'
 import { GET_CHARACTERS } from '@graphql/queries/character/characters.query'
-import { Character, CharacterFilter, FilterValues, SortOrder } from '@appTypes/character/character.types'
-import { CHARACTER_FILTER_VALUES, GENDER_FILTER_VALUES, SORT_ORDER, SPECIES_FILTER_VALUES, STATUS_FILTER_VALUES } from '@lib/character.constants'
+import {
+  Character,
+  CharacterFilter,
+  FilterValues,
+  SortOrder,
+} from '@appTypes/character/character.types'
+import {
+  CHARACTER_FILTER_VALUES,
+  GENDER_FILTER_VALUES,
+  SORT_ORDER,
+  SPECIES_FILTER_VALUES,
+  STATUS_FILTER_VALUES,
+} from '@lib/character.constants'
 
 const DEFAULT_FILTERS: FilterValues = {
   characterType: CHARACTER_FILTER_VALUES.ALL,
@@ -36,10 +47,13 @@ export function useCharacters() {
   if (filters.status !== STATUS_FILTER_VALUES.ALL) queryFilter.status = filters.status
   if (filters.gender !== GENDER_FILTER_VALUES.ALL) queryFilter.gender = filters.gender
 
-  const { data, loading, error, previousData } = useQuery<{ characters: Character[] }>(GET_CHARACTERS, {
-    variables: { filter: queryFilter },
-    fetchPolicy: 'cache-and-network'
-  })
+  const { data, loading, error, previousData } = useQuery<{ characters: Character[] }>(
+    GET_CHARACTERS,
+    {
+      variables: { filter: queryFilter },
+      fetchPolicy: 'cache-and-network',
+    },
+  )
 
   const characters = useMemo(() => {
     const currentData = data ?? previousData

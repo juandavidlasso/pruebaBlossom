@@ -1,13 +1,22 @@
-import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize';
-import { sequelize } from '../config/database';
+import {
+  CreationOptional,
+  DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  Model,
+} from "sequelize";
+import { sequelize } from "../config/database";
 
-export class Character extends Model<InferAttributes<Character, { omit: 'createdAt' | 'updatedAt'}>, InferCreationAttributes<Character, { omit: 'createdAt' | 'updatedAt'}>> {
+export class Character extends Model<
+  InferAttributes<Character, { omit: "createdAt" | "updatedAt" }>,
+  InferCreationAttributes<Character, { omit: "createdAt" | "updatedAt" }>
+> {
   declare id: number;
   declare name: string;
-  declare status: 'Alive' | 'Dead' | 'unknown' | string;
+  declare status: "Alive" | "Dead" | "unknown" | string;
   declare species: string;
   declare type: string;
-  declare gender: 'Female' | 'Male' | 'Genderless' | 'unknown' | string;
+  declare gender: "Female" | "Male" | "Genderless" | "unknown" | string;
   declare origin: string;
   declare location: string;
   declare image: string;
@@ -39,7 +48,7 @@ Character.init(
     type: {
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: '',
+      defaultValue: "",
     },
     gender: {
       type: DataTypes.STRING,
@@ -64,14 +73,14 @@ Character.init(
   },
   {
     sequelize,
-    tableName: 'characters',
+    tableName: "characters",
     timestamps: true,
     indexes: [
-      { fields: ['name'] },
-      { fields: ['status'] },
-      { fields: ['species'] },
-      { fields: ['gender'] },
-      { fields: ['origin'] },
+      { fields: ["name"] },
+      { fields: ["status"] },
+      { fields: ["species"] },
+      { fields: ["gender"] },
+      { fields: ["origin"] },
     ],
-  }
+  },
 );
